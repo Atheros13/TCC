@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TCC", "TCC\TCC.pyproj", "{127D9E20-E51F-4F2F-8A99-1DCF1C3B2562}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{127D9E20-E51F-4F2F-8A99-1DCF1C3B2562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127D9E20-E51F-4F2F-8A99-1DCF1C3B2562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DC58103-A278-41F3-9454-49E365C05F4F}
+	EndGlobalSection
+EndGlobal
