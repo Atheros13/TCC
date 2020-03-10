@@ -25,9 +25,8 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.stacklayout import StackLayout
 from kivy.uix.tabbedpanel import TabbedPanel, TabbedPanelItem
-
-
 
 #-----------------------------------------------------------------------------#
 
@@ -43,7 +42,74 @@ import time
 
 #-----------------------------------------------------------------------------#
 
+### KV-LANG ###
+
+Builder.load_string('''
+
+<MainWindow>:
+	
+	canvas.before:
+		Color:
+			rgba: 1, 1, 1, 1
+		Rectangle:
+			size: self.size
+			pos: self.pos	
+	spacing: 5	
+	
+	GridLayout:
+		cols: 1
+		padding: 1
+		spacing: 1
+		canvas.before:
+			Color:
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				size: self.size
+				pos: self.pos		
+		size_hint_x: 0.2
+		id: sidebody
+		
+		ScrollView:
+			size_hint_y: None
+			id: scroll
+			GridLayout:
+				cols: 1
+				size_hint_y: None
+				height: 0
+				id: sidebar
+
+	GridLayout:
+		cols: 1
+		canvas.before:
+			Color:
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				size: self.size
+				pos: self.pos	
+		id: body		
+
+''')
+
+#-----------------------------------------------------------------------------#
+
+### APP IMPORTS ###
+
+from app.kivy.layouts import LoginLayout
+
+#-----------------------------------------------------------------------------#
+
 ### MAIN APP ###
+
+class MainWindow(BoxLayout):
+
+	orientation = 'horizontal'
+
+	def add_page(self, page):
+		
+		for child in self.ids.body.children:
+			self.ids.body.remove_widget(child)
+
+		self.ids.body.add_widget(page)
 
 class MainApp(App):
 
@@ -54,10 +120,16 @@ class MainApp(App):
 
 		## Settings
 		self.title = 'TCC'
+		Window.size = (600, 400)
 
 	def build(self):
 		
-		return BoxLayout()
+		main = MainWindow()
+		login = LoginLayout()
+
+		main.ids.body.add_widget(login)
+
+		return main
 
 #-----------------------------------------------------------------------------#
 
