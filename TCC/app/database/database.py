@@ -59,3 +59,4 @@ class Database():
 			output.append(table[0])
 		
 		return output
+

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>127d9e20-e51f-4f2f-8a99-1dcf1c3b2562</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>engine.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -29,9 +29,15 @@
     <Compile Include="app\kivy\widgets\DropDownWidget.py" />
     <Compile Include="app\kivy\widgets\__init__.py" />
     <Compile Include="app\kivy\__init__.py" />
-    <Compile Include="app\models\model.py" />
+    <Compile Include="app\models\staff.py" />
     <Compile Include="app\models\__init__.py" />
-    <Compile Include="main.py" />
+    <Compile Include="engine.py" />
+    <Compile Include="app\main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="seed.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />

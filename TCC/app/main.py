@@ -94,11 +94,12 @@ Builder.load_string('''
 
 ### APP IMPORTS ###
 
+from app.database import Database
 from app.kivy.layouts import LoginLayout
 
 #-----------------------------------------------------------------------------#
 
-### MAIN APP ###
+### MAIN ###
 
 class MainWindow(BoxLayout):
 
@@ -111,38 +112,43 @@ class MainWindow(BoxLayout):
 
 		self.ids.body.add_widget(page)
 
-class MainApp(App):
-
-	title = 'TCC'
+class MainClass():
 
 	def __init__(self, *args, **kwargs):
-		super(MainApp, self).__init__(**kwargs)
 
-		## Settings
-		self.title = 'TCC'
-		Window.size = (600, 400)
+		self.window = MainWindow()
 
-	def build(self):
+		## Build
+		self.build_database()
 		
-		main = MainWindow()
-		login = LoginLayout()
+		## Engine
+		self.login_layout = self.build_login()
+		self.window.add_page(self.login_layout)
+	
+	def build_database(self):
 
-		main.ids.body.add_widget(login)
+		self.db = Database('tcc')
 
-		return main
+		self.staff = self.build_staff()
 
-#-----------------------------------------------------------------------------#
+	def build_staff(self):
 
-### ENGINE ###
+		staff_data = self.db.cursor.execute('''SELECT * from staff''').fetchall()
+		
+		for staff in staff_data:
+			pass
 
-if __name__ == '__main__':
+		staff = []
 
-	MainApp().run()
+		return staff
 
-#-----------------------------------------------------------------------------#
+	def build_login(self):
 
-### CREATION ###
+		staff = []		
+		
+		return LoginLayout(login=self.login, staff=staff)
 
-created_by = 'Atheros'
+	def login(self, *args, **kwargs):
 
-#-----------------------------------------------------------------------------#
+		print(self.login_layout.username.text, self.login_layout.password.text)
+
