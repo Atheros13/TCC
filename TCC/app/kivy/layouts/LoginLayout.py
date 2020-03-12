@@ -34,6 +34,10 @@ class LoginLayout(GridLayout):
 
     def build_login(self):
 
+        staff_list = []
+        for staff in self.staff:
+            staff_list.append(staff.name)
+
         box = BoxLayout(orientation='horizontal', 
                         spacing=10,
                         size_hint_y=None, height=100)
@@ -41,7 +45,7 @@ class LoginLayout(GridLayout):
         login = BoxLayout(orientation='vertical', size_hint_x=3, spacing=10)
         
         u = BoxLayout()
-        self.username = Spinner(size_hint_x=1.5, text='', values=self.staff)
+        self.username = Spinner(size_hint_x=1.5, text='', values=staff_list)
 
         u.add_widget(Label(text='Name'))
         u.add_widget(self.username)

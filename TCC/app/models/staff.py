@@ -1,15 +1,15 @@
 
 class Staff():    
 
-    def __init__(self, id, firstname, lastname, role, **kwargs):
+    def __init__(self, staff, **kwargs):
 
-        self.id = id
+        self.id = staff[0]
 
-        self.firstname = firstname
-        self.lastname = lastname
+        self.firstname = staff[1]
+        self.lastname = staff[2]
         self.name = self.firstname + ' ' + self.lastname
 
-        self.roles = self.determine_roles(role)
+        self.roles = self.determine_roles(staff[3])
 
 
     def determine_roles(self, role):

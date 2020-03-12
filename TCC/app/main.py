@@ -96,6 +96,7 @@ Builder.load_string('''
 
 from app.database import Database
 from app.kivy.layouts import LoginLayout
+from app.models.staff import Staff
 
 #-----------------------------------------------------------------------------#
 
@@ -119,34 +120,26 @@ class MainClass():
 		self.window = MainWindow()
 
 		## Build
-		self.build_database()
+		self.db = Database('tcc')
+		self.staff = self.build_staff()
+
+		self.login_layout = self.build_login()
 		
 		## Engine
-		self.login_layout = self.build_login()
 		self.window.add_page(self.login_layout)
-	
-	def build_database(self):
-
-		self.db = Database('tcc')
-
-		self.staff = self.build_staff()
 
 	def build_staff(self):
 
 		staff_data = self.db.cursor.execute('''SELECT * from staff''').fetchall()
-		
+		staff_list = []
 		for staff in staff_data:
-			pass
+			staff_list.append(Staff(staff))
 
-		staff = []
-
-		return staff
+		return staff_list
 
 	def build_login(self):
 
-		staff = []		
-		
-		return LoginLayout(login=self.login, staff=staff)
+		return LoginLayout(login=self.login, staff=self.staff)
 
 	def login(self, *args, **kwargs):
 

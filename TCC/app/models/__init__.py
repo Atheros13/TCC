@@ -2,4 +2,4 @@
 
 '''
 
-from .Model import Model
+from .staff import Staff

@@ -25,7 +25,7 @@ class MainApp(App):
 
 		## Settings
 		self.title = 'TCC'
-		Window.size = (600, 400)
+		Window.size = (600, 600)
 
 	def build(self):
 
