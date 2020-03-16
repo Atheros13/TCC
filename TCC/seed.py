@@ -16,6 +16,7 @@ class Seed():
 
 
         #self.build_staff()
+        #self.build_breaks()
 
     def build_staff(self):
 
@@ -71,6 +72,32 @@ class Seed():
                 id_count += 1
 
             self.db.connection.commit()
+
+    def build_breaks(self):
+
+        command = ''' CREATE TABLE breaks (          
+            
+            id INT NOT NULL PRIMARY KEY,
+            staff_id INT,
+            
+            coffee1 INT,
+            meal INT,
+            coffee2 INT,
+            
+            taxi INT,
+
+            supervisor INT DEFAULT 0,
+            interim INT DEFAULT 0,
+            dishes INT DEFAULT 0,
+            cactus INT DEFAULT 0,
+            training TEXT,
+
+            FOREIGN KEY(staff_id) REFERENCES staff(id)
+
+            )'''
+
+        self.db.cursor.execute(command)
+        self.db.connection.commit()
             
 #-----------------------------------------------------------------------------#
 

@@ -24,17 +24,18 @@
   <ItemGroup>
     <Compile Include="app\database\database.py" />
     <Compile Include="app\database\__init__.py" />
+    <Compile Include="app\kivy\layouts\MenuLayout.py" />
     <Compile Include="app\kivy\layouts\LoginLayout.py" />
     <Compile Include="app\kivy\layouts\__init__.py" />
     <Compile Include="app\kivy\widgets\DropDownWidget.py" />
     <Compile Include="app\kivy\widgets\__init__.py" />
     <Compile Include="app\kivy\__init__.py" />
-    <Compile Include="app\models\staff.py" />
-    <Compile Include="app\models\__init__.py" />
-    <Compile Include="engine.py" />
     <Compile Include="app\main.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\models\staff.py" />
+    <Compile Include="app\models\__init__.py" />
+    <Compile Include="engine.py" />
     <Compile Include="seed.py">
       <SubType>Code</SubType>
     </Compile>

@@ -100,18 +100,16 @@ from app.models.staff import Staff
 
 #-----------------------------------------------------------------------------#
 
-### MAIN ###
-
 class MainWindow(BoxLayout):
 
-	orientation = 'horizontal'
+    orientation = 'horizontal'
 
-	def add_page(self, page):
-		
-		for child in self.ids.body.children:
-			self.ids.body.remove_widget(child)
+    def add_page(self, page):
 
-		self.ids.body.add_widget(page)
+        for child in self.ids.body.children:
+            self.ids.body.remove_widget(child)
+
+        self.ids.body.add_widget(page)
 
 class MainClass():
 
@@ -123,25 +121,32 @@ class MainClass():
 		self.db = Database('tcc')
 		self.staff = self.build_staff()
 
-		self.login_layout = self.build_login()
-		
+		self.login_layout = self.build_login_layout()
+
 		## Engine
 		self.window.add_page(self.login_layout)
 
+	##
+
 	def build_staff(self):
 
-		staff_data = self.db.cursor.execute('''SELECT * from staff''').fetchall()
+		staff_data = self.db.cursor.execute('''SELECT * from staff
+											ORDER BY firstname ASC''').fetchall()
 		staff_list = []
 		for staff in staff_data:
-			staff_list.append(Staff(staff))
+			s = Staff(staff)
+
+			if s.name == 'Michael Atheros':
+				staff_list = [s] + staff_list
+			else:
+				staff_list.append(s)
 
 		return staff_list
 
-	def build_login(self):
+	def build_login_layout(self):
 
 		return LoginLayout(login=self.login, staff=self.staff)
 
 	def login(self, *args, **kwargs):
 
-		print(self.login_layout.username.text, self.login_layout.password.text)
-
+		staff = self.login_layout.username.text
