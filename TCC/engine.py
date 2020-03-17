@@ -10,7 +10,7 @@ from kivy.lang import Builder
 
 ### APP IMPORTS ###
 
-from app.main import MainClass
+from app.main.main import MainClass
 
 #-----------------------------------------------------------------------------#
 
